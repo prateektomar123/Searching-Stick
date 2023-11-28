@@ -134,6 +134,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Event\EventService.cpp" />
+    <ClCompile Include="source\Global\Config.cpp" />
+    <ClCompile Include="source\Global\ServiceLocator.cpp" />
+    <ClCompile Include="source\Graphics\GraphicService.cpp" />
+    <ClCompile Include="source\Main\GameService.cpp" />
+    <ClCompile Include="source\Sound\SoundService.cpp" />
+    <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
+    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
+    <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
+    <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="source\UI\UIElement\TextView.cpp" />
+    <ClCompile Include="source\UI\UIElement\UIView.cpp" />
+    <ClCompile Include="source\UI\UISerive.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Event\EventService.h" />
+    <ClInclude Include="include\Global\Config.h" />
+    <ClInclude Include="include\Global\ServiceLocator.h" />
+    <ClInclude Include="include\Graphics\GraphicService.h" />
+    <ClInclude Include="include\Main\GameService.h" />
+    <ClInclude Include="include\Sound\SoundService.h" />
+    <ClInclude Include="include\UI\Interface\IUIController.h" />
+    <ClInclude Include="include\UI\MainMenu\MainMenuUIController.h" />
+    <ClInclude Include="include\UI\SplashScreen\SplashScreenUIController.h" />
+    <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />
+    <ClInclude Include="include\UI\UIElement\ButtonView.h" />
+    <ClInclude Include="include\UI\UIElement\ImageView.h" />
+    <ClInclude Include="include\UI\UIElement\TextView.h" />
+    <ClInclude Include="include\UI\UIElement\UIView.h" />
+    <ClInclude Include="include\UI\UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
