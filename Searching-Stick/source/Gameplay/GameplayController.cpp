@@ -16,7 +16,7 @@ namespace Gameplay
 		gameplay_view = new GameplayView();
 		gameplay_model = new GameplayModel();
 
-		for (int i = 0; i < gameplay_model->number_of_elements; i++) elements.push_back(new RectangleShapeView());
+		for (int i = 0; i < gameplay_model->number_of_elements; i++) elements.push_back(new Element(i));
 	}
 
 	GameplayController::~GameplayController() 
@@ -41,7 +41,7 @@ namespace Gameplay
 			sf::Vector2f rectangle_size = sf::Vector2f(rectangle_width, 
 				(static_cast<float>(i+1) / gameplay_model->number_of_elements) * gameplay_model->max_element_height);
 
-			elements[i]->initialize(rectangle_size, sf::Vector2f(0,0), 0, gameplay_model->element_color);
+			elements[i]->element_view->initialize(rectangle_size, sf::Vector2f(0,0), 0, gameplay_model->element_color);
 		}
 	}
 
@@ -49,13 +49,13 @@ namespace Gameplay
 	{
 		processSearchThreadState();
 		gameplay_view->update();
-		for (int i = 0; i < elements.size(); i++) elements[i]->update();
+		for (int i = 0; i < elements.size(); i++) elements[i]->element_view->update();
 	}
 
 	void GameplayController::render() 
 	{
 		gameplay_view->render(); 
-		for (int i = 0; i < elements.size(); i++) elements[i]->render();
+		for (int i = 0; i < elements.size(); i++) elements[i]->element_view->render();
 	}
 
 	float GameplayController::calculateElementWidth()
@@ -70,10 +70,10 @@ namespace Gameplay
 	{
 		for (int i = 0; i < elements.size(); i++)
 		{
-			float x_position = (i * elements[i]->getSize().x)  + ((i + 1) * gameplay_model->elements_spacing);
-			float y_position = gameplay_model->element_y_position - elements[i]->getSize().y;
+			float x_position = (i * elements[i]->element_view->getSize().x)  + ((i + 1) * gameplay_model->elements_spacing);
+			float y_position = gameplay_model->element_y_position - elements[i]->element_view->getSize().y;
 
-			elements[i]->setPosition(sf::Vector2f(x_position, y_position));
+			elements[i]->element_view->setPosition(sf::Vector2f(x_position, y_position));
 		}
 	}
 
@@ -83,6 +83,18 @@ namespace Gameplay
 		std::mt19937 random_engine(device());
 
 		std::shuffle(elements.begin(), elements.end(), random_engine);
+		updateElementsPosition();
+	}
+
+	void GameplayController::sortElements()
+	{
+		std::sort(elements.begin(), elements.end(), [this](const Element* a, const Element* b) { return compareElementsByData(a, b); });
+		updateElementsPosition();
+	}
+
+	bool GameplayController::compareElementsByData(const Element* a, const Element* b) const
+	{
+		return a->data < b->data;
 	}
 
 	void GameplayController::processSearchThreadState()
@@ -99,16 +111,44 @@ namespace Gameplay
 
 			if (elements[i] == element_to_search)
 			{
-				element_to_search->setFillColor(gameplay_model->found_element_color);
+				elements[i]->element_view->setFillColor(gameplay_model->found_element_color);
 				element_to_search = nullptr;
 				return;
 			}
 			else
 			{
-				elements[i]->setFillColor(gameplay_model->processing_element_color);
+				elements[i]->element_view->setFillColor(gameplay_model->processing_element_color);
 				std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
-				elements[i]->setFillColor(gameplay_model->element_color);
+				elements[i]->element_view->setFillColor(gameplay_model->element_color);
 			}
+		}
+	}
+
+	void GameplayController::processBinarySearch()
+	{
+		int left = 0;
+		int right = elements.size();
+
+		while (left < right)
+		{
+			int mid = left + (right - left) / 2;
+			number_of_array_access += 2;
+			number_of_comparisons++;
+
+			if (elements[mid] == element_to_search)
+			{
+				elements[mid]->element_view->setFillColor(gameplay_model->found_element_color);
+				element_to_search = nullptr;
+				return;
+			}
+
+			elements[mid]->element_view->setFillColor(gameplay_model->processing_element_color);
+			std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
+			elements[mid]->element_view->setFillColor(gameplay_model->element_color);
+
+			number_of_array_access++;
+			if (elements[mid]->data <= element_to_search->data) left = mid;
+			else right = mid;
 		}
 	}
 
@@ -122,12 +162,17 @@ namespace Gameplay
 		case Gameplay::SearchType::LINEAR_SERACH:
 			search_thread = std::thread(&GameplayController::processLinearSearch, this);
 			break;
+
+		case Gameplay::SearchType::BINARY_SEARCH:
+			sortElements();
+			search_thread = std::thread(&GameplayController::processBinarySearch, this);
+			break;
 		}
 	}
 
 	void GameplayController::resetElementsColor()
 	{
-		for (int i = 0; i < elements.size(); i++) elements[i]->setFillColor(gameplay_model->element_color);
+		for (int i = 0; i < elements.size(); i++) elements[i]->element_view->setFillColor(gameplay_model->element_color);
 	}
 
 	void GameplayController::resetVariables()
@@ -139,16 +184,15 @@ namespace Gameplay
 	void GameplayController::resetSearchElement()
 	{
 		element_to_search = elements[std::rand() % elements.size()];
-		element_to_search->setFillColor(gameplay_model->search_element_color);
+		element_to_search->element_view->setFillColor(gameplay_model->search_element_color);
 	}
 
 	void GameplayController::reset() 
 	{
-		if (search_thread.joinable()) search_thread.join();
 		current_operation_delay = 0;
+		if (search_thread.joinable()) search_thread.join();
 		
 		shuffleElements();
-		updateElementsPosition();
 		resetElementsColor();
 		resetSearchElement();
 		resetVariables();

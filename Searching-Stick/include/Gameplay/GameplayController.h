@@ -10,14 +10,30 @@ namespace Gameplay
     class GameplayModel;
     enum class SearchType;
 
+    struct Element
+    {
+        int data;
+        UI::UIElement::RectangleShapeView* element_view;
+
+        Element() { }
+
+        Element(int data)
+        {
+            this->data = data;
+            element_view = new UI::UIElement::RectangleShapeView();
+        }
+
+        ~Element() { delete(element_view); }
+    };
+
     class GameplayController
     {
     private:
         GameplayView* gameplay_view;
         GameplayModel* gameplay_model;
 
-        std::vector<UI::UIElement::RectangleShapeView*> elements;
-        UI::UIElement::RectangleShapeView* element_to_search;
+        std::vector<Element*> elements;
+        Element* element_to_search;
         SearchType search_type;
 
         std::thread search_thread;
@@ -31,6 +47,8 @@ namespace Gameplay
 
         void updateElementsPosition();
         void shuffleElements();
+        void sortElements();
+        bool compareElementsByData(const Element* a, const Element* b) const;
 
         void resetElementsColor();
         void resetVariables();
@@ -38,6 +56,7 @@ namespace Gameplay
 
         void processSearchThreadState();
         void processLinearSearch();
+        void processBinarySearch();
 
         void destroy();
 
