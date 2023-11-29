@@ -14,16 +14,16 @@ namespace UI
 			const float button_width = 350.f;
 			const float button_height = 140.f;
 
-			const float play_button_y_position = 400.f;
-			const float instructions_button_y_position = 600.f;
+			const float linear_search_button_y_position = 400.f;
+			const float binary_search_button_y_position = 600.f;
 			const float quit_button_y_position = 800.f;
 
 			const float background_alpha = 85.f;
 
 			UIElement::ImageView* background_image;
 
-			UIElement::ButtonView* play_button;
-			UIElement::ButtonView* instructions_button;
+			UIElement::ButtonView* linear_search_button;
+			UIElement::ButtonView* binary_search_button;
 			UIElement::ButtonView* quit_button;
 
 			void createImage();
@@ -32,8 +32,8 @@ namespace UI
 			void initializeButtons();
 			void registerButtonCallback();
 
-			void playButtonCallback();
-			void instructionsButtonCallback();
+			void linearSearchButtonCallback();
+			void binarySearchButtonCallback();
 			void quitButtonCallback();
 
 			void destroy();

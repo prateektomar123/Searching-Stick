@@ -6,9 +6,9 @@ namespace Global
 
 	const sf::String Config::background_texture_path = "assets/textures/searching_bg.jpg";
 
-	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
+	const sf::String Config::linear_search_button_texture_path = "assets/textures/linear_search_button.png";
 
-	const sf::String Config::instructions_button_texture_path = "assets/textures/instructions_button.png";
+	const sf::String Config::binary_search_button_texture_path = "assets/textures/binary_search_button.png";
 
 	const sf::String Config::quit_button_texture_path = "assets/textures/quit_button.png";
 
