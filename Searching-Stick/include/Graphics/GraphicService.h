@@ -8,7 +8,7 @@ namespace Graphics
 	private:
 		const int frame_rate = 60;
 
-		const std::string game_window_title = "Outscal Presents - Searching Stick";
+		const std::string game_window_title = "Outscal Presents - Searching Visualizer";
 
 		const int game_window_width = 1920;
 		const int game_window_height = 1080;
