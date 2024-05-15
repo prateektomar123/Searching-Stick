@@ -41,8 +41,8 @@ namespace UI
         void GameplayUIController::createTexts()
         {
             search_type_text = new TextView();
-            number_of_comparisons_text = new TextView();
-            number_of_array_access_text = new TextView();
+            comparisons_text = new TextView();
+            array_access_text = new TextView();
         }
 
         void GameplayUIController::initializeButton()
@@ -58,8 +58,8 @@ namespace UI
         void GameplayUIController::initializeTexts()
         {
             search_type_text->initialize("Search Type  :  Linear Search", sf::Vector2f(search_type_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
-            number_of_comparisons_text->initialize("Comparisons  :  0", sf::Vector2f(comparisons_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
-            number_of_array_access_text->initialize("Array Access  :  0", sf::Vector2f(array_access_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
+            comparisons_text->initialize("Comparisons  :  0", sf::Vector2f(comparisons_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
+            array_access_text->initialize("Array Access  :  0", sf::Vector2f(array_access_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
         }
 
         void GameplayUIController::update()
@@ -74,16 +74,16 @@ namespace UI
         {
             menu_button->render();
             search_type_text->render();
-            number_of_comparisons_text->render();
-            number_of_array_access_text->render();
+            comparisons_text->render();
+            array_access_text->render();
         }
 
         void GameplayUIController::show()
         {
             menu_button->show();
             search_type_text->show();
-            number_of_comparisons_text->show();
-            number_of_array_access_text->show();
+            comparisons_text->show();
+            array_access_text->show();
         }
 
         void GameplayUIController::updateSearchTypeText()
@@ -108,8 +108,8 @@ namespace UI
             int comparisons = ServiceLocator::getInstance()->getGameplayService()->getNumberOfComparisons();;
             sf::String comparisons_string = "Comparisons  :  " + std::to_string(comparisons);
 
-            number_of_comparisons_text->setText(comparisons_string);
-            number_of_comparisons_text->update();
+            comparisons_text->setText(comparisons_string);
+            comparisons_text->update();
         }
 
         void GameplayUIController::updateArrayAccessText()
@@ -117,8 +117,8 @@ namespace UI
             int array_access = ServiceLocator::getInstance()->getGameplayService()->getNumberOfArrayAccess();;
             sf::String array_access_string = "Array Access  :  " + std::to_string(array_access);
 
-            number_of_array_access_text->setText(array_access_string);
-            number_of_array_access_text->update();
+            array_access_text->setText(array_access_string);
+            array_access_text->update();
         }
 
         void GameplayUIController::menuButtonCallback()
@@ -137,8 +137,8 @@ namespace UI
         {
             delete (menu_button);
             delete (search_type_text);
-            delete (number_of_comparisons_text);
-            delete (number_of_array_access_text);
+            delete (comparisons_text);
+            delete (array_access_text);
         }
     }
 }
