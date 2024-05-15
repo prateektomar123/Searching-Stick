@@ -13,8 +13,7 @@ namespace Sound
 
 	void SoundService::loadBackgroundMusicFromFile()
 	{
-		if (!background_music.openFromFile(Config::background_music_path))
-			printf("Error loading background music file");
+
 	}
 
 	void SoundService::loadSoundFromFile()

@@ -53,7 +53,6 @@ namespace UI
 
         void SplashScreenUIController::fadeOutAnimationCallback()
         {
-            ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
             GameService::setGameState(GameState::MAIN_MENU);
         }
 
