@@ -49,7 +49,7 @@ namespace UI
         {
             menu_button->initialize("Menu Button",
                 Config::menu_button_large_texture_path,
-                button_width, button_height,
+                menu_button_width, menu_button_height,
                 sf::Vector2f(menu_button_x_position, menu_button_y_position));
 
             registerButtonCallback();
@@ -105,8 +105,8 @@ namespace UI
 
         void GameplayUIController::updateComparisonsText()
         {
-            int comparisons = ServiceLocator::getInstance()->getGameplayService()->getNumberOfComparisons();;
-            sf::String comparisons_string = "Comparisons  :  " + std::to_string(comparisons);
+            int number_of_comparisons = ServiceLocator::getInstance()->getGameplayService()->getNumberOfComparisons();;
+            sf::String comparisons_string = "Comparisons  :  " + std::to_string(number_of_comparisons);
 
             number_of_comparisons_text->setText(comparisons_string);
             number_of_comparisons_text->update();
@@ -114,8 +114,8 @@ namespace UI
 
         void GameplayUIController::updateArrayAccessText()
         {
-            int array_access = ServiceLocator::getInstance()->getGameplayService()->getNumberOfArrayAccess();;
-            sf::String array_access_string = "Array Access  :  " + std::to_string(array_access);
+            int number_of_array_access = ServiceLocator::getInstance()->getGameplayService()->getNumberOfArrayAccess();;
+            sf::String array_access_string = "Array Access  :  " + std::to_string(number_of_array_access);
 
             number_of_array_access_text->setText(array_access_string);
             number_of_array_access_text->update();
