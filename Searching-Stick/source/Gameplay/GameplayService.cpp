@@ -43,7 +43,7 @@ namespace Gameplay
 		gameplay_controller->searchElement(search_type);
 	}
 
-	SearchType GameplayService::getSearchType()
+	SearchType GameplayService::getCurrentSearchType()
 	{
 		return gameplay_controller->getSearchType();
 	}
