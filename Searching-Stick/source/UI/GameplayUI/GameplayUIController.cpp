@@ -88,7 +88,7 @@ namespace UI
 
         void GameplayUIController::updateSearchTypeText()
         {
-            SearchType search_type = ServiceLocator::getInstance()->getGameplayService()->getSearchType();
+            SearchType search_type = ServiceLocator::getInstance()->getGameplayService()->getCurrentSearchType();
             
             switch (search_type)
             {

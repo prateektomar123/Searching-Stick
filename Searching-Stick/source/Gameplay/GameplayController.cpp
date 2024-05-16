@@ -16,7 +16,8 @@ namespace Gameplay
 		gameplay_view = new GameplayView();
 		gameplay_model = new GameplayModel();
 
-		for (int i = 0; i < gameplay_model->number_of_elements; i++) elements.push_back(new RectangleShapeView());
+		for (int i = 0; i < gameplay_model->number_of_elements; i++) 
+			elements.push_back(new RectangleShapeView());
 	}
 
 	GameplayController::~GameplayController() 
@@ -48,14 +49,18 @@ namespace Gameplay
 	void GameplayController::update() 
 	{
 		processSearchThreadState();
+
 		gameplay_view->update();
-		for (int i = 0; i < elements.size(); i++) elements[i]->update();
+		
+		for (int i = 0; i < elements.size(); i++) 
+			elements[i]->update();
 	}
 
 	void GameplayController::render() 
 	{
 		gameplay_view->render(); 
-		for (int i = 0; i < elements.size(); i++) elements[i]->render();
+		for (int i = 0; i < elements.size(); i++) 
+			elements[i]->render();
 	}
 
 	float GameplayController::calculateElementWidth()
@@ -87,7 +92,8 @@ namespace Gameplay
 
 	void GameplayController::processSearchThreadState()
 	{
-		if (search_thread.joinable() && element_to_search == nullptr) search_thread.join();
+		if (search_thread.joinable() && element_to_search == nullptr) 
+			search_thread.join();
 	}
 
 	void GameplayController::processLinearSearch()
@@ -127,7 +133,8 @@ namespace Gameplay
 
 	void GameplayController::resetElementsColor()
 	{
-		for (int i = 0; i < elements.size(); i++) elements[i]->setFillColor(gameplay_model->element_color);
+		for (int i = 0; i < elements.size(); i++) 
+			elements[i]->setFillColor(gameplay_model->element_color);
 	}
 
 	void GameplayController::resetVariables()
@@ -142,9 +149,11 @@ namespace Gameplay
 		element_to_search->setFillColor(gameplay_model->search_element_color);
 	}
 
-	void GameplayController::reset() 
+	void GameplayController::reset()
 	{
-		if (search_thread.joinable()) search_thread.join();
+		if (search_thread.joinable()) 
+			search_thread.join();
+		
 		current_operation_delay = 0;
 		
 		shuffleElements();
