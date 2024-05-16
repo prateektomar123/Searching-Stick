@@ -34,8 +34,8 @@ namespace Gameplay
 
         std::vector<Element*> elements;
         Element* element_to_search;
-        SearchType search_type;
 
+        SearchType search_type;
         std::thread search_thread;
 
         int number_of_comparisons;
@@ -76,3 +76,6 @@ namespace Gameplay
         int getNumberOfArrayAccess();
     };
 }
+
+
+

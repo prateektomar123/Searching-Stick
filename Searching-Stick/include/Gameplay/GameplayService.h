@@ -21,7 +21,7 @@ namespace Gameplay
 		void reset();
 		void searchElement(SearchType search_type);
 
-		SearchType getSearchType();
+		SearchType getCurrentSearchType();
 		int getNumberOfComparisons();
 		int getNumberOfArrayAccess();
 	};

@@ -21,15 +21,12 @@ namespace UI
 			const float menu_button_x_position = 1770.f;
 			const float menu_button_y_position = 33.f;
 
-			const float button_width = 100.f;
-			const float button_height = 50.f;
-
-			const float image_width = 50.f;
-			const float image_height = 50.f;
+			const float menu_button_width = 100.f;
+			const float menu_button_height = 50.f;
 
 			UIElement::TextView* search_type_text;
-			UIElement::TextView* comparisons_text;
-			UIElement::TextView* array_access_text;
+			UIElement::TextView* number_of_comparisons_text;
+			UIElement::TextView* number_of_array_access_text;
 			UIElement::ButtonView* menu_button;
 
 			void createButton();
