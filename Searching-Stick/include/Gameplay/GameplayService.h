@@ -10,6 +10,8 @@ namespace Gameplay
 	private:
 		GameplayController* gameplay_controller;
 
+		void initializeRandomSeed();
+
 	public:
 		GameplayService();
 		~GameplayService();

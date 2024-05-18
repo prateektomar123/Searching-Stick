@@ -15,8 +15,12 @@ namespace Gameplay
 	{
 		gameplay_view = new GameplayView();
 		gameplay_model = new GameplayModel();
+		initializeElementsArray();		//calling helper function
+	}
 
-		for (int i = 0; i < gameplay_model->number_of_elements; i++) 
+	void GameplayController::initializeElementsArray()   //created helper function specifically for filling elements vector with rectangleshapeobjects
+	{
+		for (int i = 0; i < gameplay_model->number_of_elements; i++)
 			elements.push_back(new RectangleShapeView());
 	}
 
@@ -36,6 +40,7 @@ namespace Gameplay
 	void GameplayController::initializeElements()
 	{
 		float rectangle_width = calculateElementWidth();
+		float rectangle_height = calculateElementHeight();
 
 		for (int i = 0; i < gameplay_model->number_of_elements; i++)
 		{
@@ -69,6 +74,16 @@ namespace Gameplay
 		float total_width = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize().x;
 
 		return (total_width - total_spacing) / gameplay_model->number_of_elements;
+
+	}
+
+	float GameplayController::calculateElementHeight()			//for height just like width
+	{
+		float total_spacing = gameplay_model->elements_spacing * (gameplay_model->number_of_elements + 1);
+		float total_height = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize().y;
+
+		return (total_height - total_spacing) / gameplay_model->number_of_elements;
+
 	}
 
 	void GameplayController::updateElementsPosition()

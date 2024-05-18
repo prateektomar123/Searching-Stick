@@ -38,6 +38,8 @@ namespace Gameplay
 
         void processSearchThreadState();
         void processLinearSearch();
+        void initializeElementsArray();
+        float calculateElementHeight();
 
         void destroy();
 

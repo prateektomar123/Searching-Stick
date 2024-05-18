@@ -10,6 +10,8 @@ namespace Gameplay
 	GameplayService::GameplayService()
 	{
 		gameplay_controller = new GameplayController();
+
+
 	}
 
 	GameplayService::~GameplayService()
@@ -17,10 +19,15 @@ namespace Gameplay
 		delete (gameplay_controller);
 	}
 
-	void GameplayService::initialize()
+	void GameplayService::initializeRandomSeed()		//helper function for random seed
 	{
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	}
+
+	void GameplayService::initialize()
+	{
 		gameplay_controller->initialize();
+		initializeRandomSeed();		// calling helper function
 	}
 
 	void GameplayService::update()
