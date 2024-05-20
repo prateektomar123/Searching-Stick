@@ -16,7 +16,7 @@ namespace UI
         using namespace Global;
         using namespace Gameplay;
 
-        GameplayUIController::GameplayUIController()
+        GameplayUIController::GameplayUIController():current_search_type(Gameplay::SearchType::LINEAR_SEARCH)
         {
             createButton();
             createTexts();
@@ -31,6 +31,7 @@ namespace UI
         {
             initializeButton();
             initializeTexts();
+            updateSearchTypeText();
         }
 
         void GameplayUIController::createButton()
@@ -107,23 +108,31 @@ namespace UI
             search_type_text->show();
             number_of_comparisons_text->show();
             number_of_array_access_text->show();
+
+            num_sticks_text->show();
+            delay_text->show();
+            time_complexity_text->show();
         }
 
         void GameplayUIController::updateSearchTypeText()
         {
-            SearchType search_type = ServiceLocator::getInstance()->getGameplayService()->getCurrentSearchType();
+            SearchType new_search_type = ServiceLocator::getInstance()->getGameplayService()->getCurrentSearchType();
             
-            switch (search_type)
-            {
-            case::Gameplay::SearchType::LINEAR_SERACH:
-                search_type_text->setText("Linear Search");
-                break;
+            if (new_search_type != current_search_type) {
+                current_search_type = new_search_type;
 
-            case::Gameplay::SearchType::BINARY_SEARCH:
-                search_type_text->setText("Binary Search");
-                break;
+                switch (new_search_type)
+                {
+                case::Gameplay::SearchType::LINEAR_SEARCH:
+                    search_type_text->setText("Linear Search");
+                    break;
+
+                case::Gameplay::SearchType::BINARY_SEARCH:
+                    search_type_text->setText("Binary Search");
+                    break;
+                }
+                search_type_text->update();
             }
-            search_type_text->update();
         }
 
         void GameplayUIController::updateComparisonsText()

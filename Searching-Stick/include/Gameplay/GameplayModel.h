@@ -5,7 +5,7 @@ namespace Gameplay
 {
     enum class SearchType
     {
-        LINEAR_SERACH,
+        LINEAR_SEARCH,
         BINARY_SEARCH,
     };
 

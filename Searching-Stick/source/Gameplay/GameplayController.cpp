@@ -147,7 +147,7 @@ namespace Gameplay
 
 		switch (search_type)
 		{
-		case Gameplay::SearchType::LINEAR_SERACH:
+		case Gameplay::SearchType::LINEAR_SEARCH:
 			search_thread = std::thread(&GameplayController::processLinearSearch, this);
 			break;
 		}

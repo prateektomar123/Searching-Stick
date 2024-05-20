@@ -3,6 +3,7 @@
 #include "UI/UIElement/TextView.h"
 #include "UI/UIElement/ButtonView.h"
 #include "UI/UIElement/ImageView.h"
+#include "Gameplay/GameplayService.h"
 
 namespace UI
 {
@@ -37,6 +38,8 @@ namespace UI
 			UIElement::TextView* time_complexity_text;
 
 			UIElement::ButtonView* menu_button;
+
+			Gameplay::SearchType current_search_type;
 
 			void createButton();
 			void createTexts();
