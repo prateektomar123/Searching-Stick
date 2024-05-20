@@ -22,6 +22,12 @@ namespace Gameplay
         const sf::Color found_element_color = sf::Color::Green;
         const sf::Color processing_element_color = sf::Color::Red;
 
+        int linear_search_delay;
+        int binary_search_delay;
+
+        int linear_search_sticks;
+        int binary_search_sticks;
+
         const long operation_delay = 20;
 
         GameplayModel();

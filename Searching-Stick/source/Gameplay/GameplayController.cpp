@@ -39,6 +39,20 @@ namespace Gameplay
 		time_complexity = "XYZ";
 	}
 
+	void GameplayController::setOperationDelayAndSticks(SearchType search_type)
+	{
+		switch (search_type) {
+		case SearchType::LINEAR_SEARCH:
+			current_operation_delay = gameplay_model->linear_search_delay;
+			num_sticks = gameplay_model->linear_search_sticks;
+			break;
+		case SearchType::BINARY_SEARCH:
+			current_operation_delay = gameplay_model->binary_search_delay;
+			num_sticks = gameplay_model->binary_search_sticks;
+			break;
+		}
+	}
+
 	void GameplayController::initializeElements()
 	{
 		float rectangle_width = calculateElementWidth();
