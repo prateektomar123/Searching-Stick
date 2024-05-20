@@ -157,11 +157,13 @@ namespace Gameplay
 	void GameplayController::searchElement(SearchType search_type)
 	{
 		current_operation_delay = gameplay_model->operation_delay;
+		setOperationDelayAndSticks(search_type);
 		this->search_type = search_type;
 
 		switch (search_type)
 		{
 		case Gameplay::SearchType::LINEAR_SEARCH:
+			shuffleElements();
 			search_thread = std::thread(&GameplayController::processLinearSearch, this);
 			break;
 		}
