@@ -66,8 +66,6 @@ namespace Gameplay
         int getNumberOfSticks();
         int getDelayMilliseconds();
         sf::String getTimeComplexity();
-
-        void setOperationDelayAndSticks(SearchType search_type);
     };
 }
 

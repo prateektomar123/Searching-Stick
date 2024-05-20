@@ -39,19 +39,6 @@ namespace Gameplay
 		time_complexity = "XYZ";
 	}
 
-	void GameplayController::setOperationDelayAndSticks(SearchType search_type)
-	{
-		switch (search_type) {
-		case SearchType::LINEAR_SEARCH:
-			current_operation_delay = gameplay_model->linear_search_delay;
-			num_sticks = gameplay_model->linear_search_sticks;
-			break;
-		case SearchType::BINARY_SEARCH:
-			current_operation_delay = gameplay_model->binary_search_delay;
-			num_sticks = gameplay_model->binary_search_sticks;
-			break;
-		}
-	}
 
 	void GameplayController::initializeElements()
 	{
@@ -156,14 +143,14 @@ namespace Gameplay
 
 	void GameplayController::searchElement(SearchType search_type)
 	{
-		current_operation_delay = gameplay_model->operation_delay;
-		setOperationDelayAndSticks(search_type);
 		this->search_type = search_type;
 
 		switch (search_type)
 		{
 		case Gameplay::SearchType::LINEAR_SEARCH:
 			shuffleElements();
+			current_operation_delay = gameplay_model->linear_search_delay;
+			num_sticks = gameplay_model->linear_search_sticks;
 			search_thread = std::thread(&GameplayController::processLinearSearch, this);
 			break;
 		}

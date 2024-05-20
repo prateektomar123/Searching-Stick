@@ -12,7 +12,6 @@ namespace Gameplay
     class GameplayModel
     {
     public:
-        const int number_of_elements = 300;
         const float max_element_height = 820.f;
         const float elements_spacing = 25.f;
         const float element_y_position = 1020.f;
@@ -22,13 +21,10 @@ namespace Gameplay
         const sf::Color found_element_color = sf::Color::Green;
         const sf::Color processing_element_color = sf::Color::Red;
 
-        int linear_search_delay;
-        int binary_search_delay;
+        int linear_search_delay = 120;
+        int linear_search_sticks = 100;
 
-        int linear_search_sticks;
-        int binary_search_sticks;
-
-        const long operation_delay = 20;
+        int number_of_elements = linear_search_sticks;
 
         GameplayModel();
         ~GameplayModel();
