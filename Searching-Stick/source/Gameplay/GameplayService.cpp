@@ -10,8 +10,6 @@ namespace Gameplay
 	GameplayService::GameplayService()
 	{
 		gameplay_controller = new GameplayController();
-
-
 	}
 
 	GameplayService::~GameplayService()
@@ -63,5 +61,20 @@ namespace Gameplay
 	int GameplayService::getNumberOfArrayAccess()
 	{
 		return gameplay_controller->getNumberOfArrayAccess();
+	}
+
+	int GameplayService::getNumberOfSticks()
+	{
+		return gameplay_controller->getNumberOfSticks();
+	}
+
+	int GameplayService::getDelayMilliseconds()
+	{
+		return gameplay_controller->getDelayMilliseconds();
+	}
+
+	sf::String GameplayService::getTimeComplexity()
+	{
+		return gameplay_controller->getTimeComplexity();
 	}
 }

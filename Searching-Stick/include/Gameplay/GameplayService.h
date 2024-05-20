@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/System/String.hpp>
 
 namespace Gameplay
 {
@@ -26,5 +27,10 @@ namespace Gameplay
 		SearchType getCurrentSearchType();
 		int getNumberOfComparisons();
 		int getNumberOfArrayAccess();
+
+		int getNumberOfSticks();
+		int getDelayMilliseconds();
+		sf::String getTimeComplexity();
+
 	};
 }

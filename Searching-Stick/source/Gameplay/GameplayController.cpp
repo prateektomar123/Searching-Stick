@@ -35,6 +35,8 @@ namespace Gameplay
 		gameplay_model->initialize();
 		initializeElements();
 		reset();
+
+		time_complexity = "XYZ";
 	}
 
 	void GameplayController::initializeElements()
@@ -199,10 +201,10 @@ namespace Gameplay
 
 	int GameplayController::getNumberOfArrayAccess() { return number_of_array_access; }
 
-	int GameplayController::getNumberOfSticks() const { return gameplay_model->number_of_elements; }
+	int GameplayController::getNumberOfSticks() { return num_sticks; }
 
-	int GameplayController::getDelayInMs() const { return gameplay_model->operation_delay; }
+	int GameplayController::getDelayMilliseconds() { return delay_in_ms; }
 
-	std::string GameplayController::getTimeComplexity() const { return "O(n)"; }
+	sf::String GameplayController::getTimeComplexity() { return time_complexity; }
 
 }

@@ -15,13 +15,8 @@ namespace Gameplay
         UI::UIElement::ImageView* background_image;
 
         sf::Font font;
-        sf::Text num_sticks_text;
-        sf::Text delay_text;
-        sf::Text time_complexity_text;
 
         void initializeBackgroundImage();
-        void initializeTextElements();
-        void updateTextElements();
 
     public:
         GameplayView();
