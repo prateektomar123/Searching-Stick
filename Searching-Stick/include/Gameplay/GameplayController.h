@@ -57,6 +57,10 @@ namespace Gameplay
         SearchType getSearchType();
         int getNumberOfComparisons();
         int getNumberOfArrayAccess();
+
+        int getNumberOfSticks() const;
+        int getDelayInMs() const;
+        std::string getTimeComplexity() const;
     };
 }
 

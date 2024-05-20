@@ -118,6 +118,8 @@ namespace Gameplay
 			number_of_array_access += 2;
 			number_of_comparisons++;
 
+			Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
+
 			if (elements[i] == element_to_search)
 			{
 				element_to_search->setFillColor(gameplay_model->found_element_color);
@@ -130,7 +132,10 @@ namespace Gameplay
 				std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
 				elements[i]->setFillColor(gameplay_model->element_color);
 			}
+
 		}
+
+
 	}
 
 	void GameplayController::searchElement(SearchType search_type)
@@ -193,4 +198,11 @@ namespace Gameplay
 	int GameplayController::getNumberOfComparisons() { return number_of_comparisons; }
 
 	int GameplayController::getNumberOfArrayAccess() { return number_of_array_access; }
+
+	int GameplayController::getNumberOfSticks() const { return gameplay_model->number_of_elements; }
+
+	int GameplayController::getDelayInMs() const { return gameplay_model->operation_delay; }
+
+	std::string GameplayController::getTimeComplexity() const { return "O(n)"; }
+
 }
