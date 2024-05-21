@@ -15,8 +15,12 @@ namespace Gameplay
 	{
 		gameplay_view = new GameplayView();
 		gameplay_model = new GameplayModel();
+		initializeElementsArray();		//calling helper function
+	}
 
-		for (int i = 0; i < gameplay_model->number_of_elements; i++) 
+	void GameplayController::initializeElementsArray()   //created helper function specifically for filling elements vector with rectangleshapeobjects
+	{
+		for (int i = 0; i < gameplay_model->number_of_elements; i++)
 			elements.push_back(new RectangleShapeView());
 	}
 
@@ -31,11 +35,15 @@ namespace Gameplay
 		gameplay_model->initialize();
 		initializeElements();
 		reset();
+
+		time_complexity = "XYZ";
 	}
+
 
 	void GameplayController::initializeElements()
 	{
 		float rectangle_width = calculateElementWidth();
+		float rectangle_height = calculateElementHeight();
 
 		for (int i = 0; i < gameplay_model->number_of_elements; i++)
 		{
@@ -69,6 +77,16 @@ namespace Gameplay
 		float total_width = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize().x;
 
 		return (total_width - total_spacing) / gameplay_model->number_of_elements;
+
+	}
+
+	float GameplayController::calculateElementHeight()			//for height just like width
+	{
+		float total_spacing = gameplay_model->elements_spacing * (gameplay_model->number_of_elements + 1);
+		float total_height = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize().y;
+
+		return (total_height - total_spacing) / gameplay_model->number_of_elements;
+
 	}
 
 	void GameplayController::updateElementsPosition()
@@ -103,6 +121,8 @@ namespace Gameplay
 			number_of_array_access += 2;
 			number_of_comparisons++;
 
+			Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
+
 			if (elements[i] == element_to_search)
 			{
 				element_to_search->setFillColor(gameplay_model->found_element_color);
@@ -115,17 +135,22 @@ namespace Gameplay
 				std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
 				elements[i]->setFillColor(gameplay_model->element_color);
 			}
+
 		}
+
+
 	}
 
 	void GameplayController::searchElement(SearchType search_type)
 	{
-		current_operation_delay = gameplay_model->operation_delay;
 		this->search_type = search_type;
 
 		switch (search_type)
 		{
-		case Gameplay::SearchType::LINEAR_SERACH:
+		case Gameplay::SearchType::LINEAR_SEARCH:
+			shuffleElements();
+			current_operation_delay = gameplay_model->linear_search_delay;
+			num_sticks = gameplay_model->linear_search_sticks;
 			search_thread = std::thread(&GameplayController::processLinearSearch, this);
 			break;
 		}
@@ -178,4 +203,11 @@ namespace Gameplay
 	int GameplayController::getNumberOfComparisons() { return number_of_comparisons; }
 
 	int GameplayController::getNumberOfArrayAccess() { return number_of_array_access; }
+
+	int GameplayController::getNumberOfSticks() { return num_sticks; }
+
+	int GameplayController::getDelayMilliseconds() { return delay_in_ms; }
+
+	sf::String GameplayController::getTimeComplexity() { return time_complexity; }
+
 }

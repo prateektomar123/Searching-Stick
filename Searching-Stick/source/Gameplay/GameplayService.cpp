@@ -17,10 +17,15 @@ namespace Gameplay
 		delete (gameplay_controller);
 	}
 
-	void GameplayService::initialize()
+	void GameplayService::initializeRandomSeed()		//helper function for random seed
 	{
 		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	}
+
+	void GameplayService::initialize()
+	{
 		gameplay_controller->initialize();
+		initializeRandomSeed();		// calling helper function
 	}
 
 	void GameplayService::update()
@@ -56,5 +61,20 @@ namespace Gameplay
 	int GameplayService::getNumberOfArrayAccess()
 	{
 		return gameplay_controller->getNumberOfArrayAccess();
+	}
+
+	int GameplayService::getNumberOfSticks()
+	{
+		return gameplay_controller->getNumberOfSticks();
+	}
+
+	int GameplayService::getDelayMilliseconds()
+	{
+		return gameplay_controller->getDelayMilliseconds();
+	}
+
+	sf::String GameplayService::getTimeComplexity()
+	{
+		return gameplay_controller->getTimeComplexity();
 	}
 }

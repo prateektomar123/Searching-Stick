@@ -26,6 +26,11 @@ namespace Gameplay
         int number_of_array_access;
         int current_operation_delay;
 
+        int num_sticks;
+        int delay_in_ms;
+        sf::String time_complexity;
+
+
         void initializeElements();
         float calculateElementWidth();
 
@@ -38,6 +43,8 @@ namespace Gameplay
 
         void processSearchThreadState();
         void processLinearSearch();
+        void initializeElementsArray();
+        float calculateElementHeight();
 
         void destroy();
 
@@ -55,6 +62,10 @@ namespace Gameplay
         SearchType getSearchType();
         int getNumberOfComparisons();
         int getNumberOfArrayAccess();
+
+        int getNumberOfSticks();
+        int getDelayMilliseconds();
+        sf::String getTimeComplexity();
     };
 }
 

@@ -5,14 +5,13 @@ namespace Gameplay
 {
     enum class SearchType
     {
-        LINEAR_SERACH,
+        LINEAR_SEARCH,
         BINARY_SEARCH,
     };
 
     class GameplayModel
     {
     public:
-        const int number_of_elements = 50;
         const float max_element_height = 820.f;
         const float elements_spacing = 25.f;
         const float element_y_position = 1020.f;
@@ -22,7 +21,10 @@ namespace Gameplay
         const sf::Color found_element_color = sf::Color::Green;
         const sf::Color processing_element_color = sf::Color::Red;
 
-        const long operation_delay = 250;
+        int linear_search_delay = 120;
+        int linear_search_sticks = 100;
+
+        int number_of_elements = linear_search_sticks;
 
         GameplayModel();
         ~GameplayModel();
