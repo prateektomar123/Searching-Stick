@@ -83,5 +83,5 @@ namespace Global
 
 	Gameplay::GameplayService* ServiceLocator::getGameplayService() { return gameplay_service; }
 
-	void ServiceLocator::deleteServiceLocator() { delete(this); }
+	
 }
