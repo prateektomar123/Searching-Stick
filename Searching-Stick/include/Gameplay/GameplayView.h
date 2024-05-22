@@ -14,6 +14,8 @@ namespace Gameplay
         GameplayController* gameplay_controller;
         UI::UIElement::ImageView* background_image;
 
+        sf::Font font;
+
         void initializeBackgroundImage();
 
     public:
