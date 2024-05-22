@@ -1,8 +1,11 @@
 #pragma once
 #include <SFML/System/String.hpp>
+#include "Gameplay/StickCollection/StickCollectionModel.h"
+#include "Gameplay/StickCollection/StickCollectionController.h"
 
 namespace Gameplay
 {
+	using namespace Collection;
 	class GameplayController;
 	enum class SearchType;
 
@@ -10,6 +13,7 @@ namespace Gameplay
 	{
 	private:
 		GameplayController* gameplay_controller;
+		StickCollectionContoller* collection_controller;
 
 		void initializeRandomSeed();
 
@@ -22,12 +26,12 @@ namespace Gameplay
 		void render();
 
 		void reset();
-		void searchElement(SearchType search_type);
+		void searchElement(Collection::SearchType search_type);
 
-		SearchType getCurrentSearchType();
+		Collection::SearchType getCurrentSearchType();
+		
 		int getNumberOfComparisons();
 		int getNumberOfArrayAccess();
-
 		int getNumberOfSticks();
 		int getDelayMilliseconds();
 		sf::String getTimeComplexity();

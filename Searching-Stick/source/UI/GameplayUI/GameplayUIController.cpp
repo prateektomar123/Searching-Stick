@@ -4,7 +4,7 @@
 #include "Gameplay/GameplayService.h"
 #include "Sound/SoundService.h"
 #include "Main/GameService.h"
-#include "Gameplay/GameplayModel.h"
+#include "Gameplay/StickCollection/StickCollectionModel.h"
 
 namespace UI
 {
@@ -15,8 +15,9 @@ namespace UI
         using namespace UIElement;
         using namespace Global;
         using namespace Gameplay;
+        using namespace Collection;
 
-        GameplayUIController::GameplayUIController():current_search_type(Gameplay::SearchType::LINEAR_SEARCH)
+        GameplayUIController::GameplayUIController()
         {
             createButton();
             createTexts();
@@ -47,7 +48,7 @@ namespace UI
 
             num_sticks_text = new TextView();
             delay_text = new TextView();
-            time_complexity_text = new TextView();
+            time_complexity_text = new TextView(); 
 
         }
 
@@ -67,14 +68,14 @@ namespace UI
             number_of_comparisons_text->initialize("Comparisons  :  0", sf::Vector2f(comparisons_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
             number_of_array_access_text->initialize("Array Access  :  0", sf::Vector2f(array_access_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
 
-            num_sticks_text = new UI::UIElement::TextView();
-            num_sticks_text->initialize("Number of Sticks  :  0", sf::Vector2f(num_sticks_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
+          
+            num_sticks_text->initialize("Number of Sticks  :  0", sf::Vector2f(num_sticks_text_x_position, text_y_pos2), FontType::BUBBLE_BOBBLE, font_size);
 
-            delay_text = new UI::UIElement::TextView();
-            delay_text->initialize("Delay  :  0 ms", sf::Vector2f(delay_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
+            
+            delay_text->initialize("Delay  :  0 ms", sf::Vector2f(delay_text_x_position, text_y_pos2), FontType::BUBBLE_BOBBLE, font_size);
 
-            time_complexity_text = new UI::UIElement::TextView();
-            time_complexity_text->initialize("Time Complexity  :  O(n)", sf::Vector2f(time_complexity_text_x_position, text_y_position), FontType::BUBBLE_BOBBLE, font_size);
+            
+            time_complexity_text->initialize("Time Complexity  :  O(n)", sf::Vector2f(time_complexity_text_x_position, text_y_pos2), FontType::BUBBLE_BOBBLE, font_size);
         }
 
         void GameplayUIController::update()
@@ -116,23 +117,21 @@ namespace UI
 
         void GameplayUIController::updateSearchTypeText()
         {
-            SearchType new_search_type = ServiceLocator::getInstance()->getGameplayService()->getCurrentSearchType();
+            Gameplay::Collection::SearchType new_search_type = ServiceLocator::getInstance()->getGameplayService()->getCurrentSearchType();
             
-            if (new_search_type != current_search_type) {
-                current_search_type = new_search_type;
 
-                switch (new_search_type)
-                {
-                case::Gameplay::SearchType::LINEAR_SEARCH:
-                    search_type_text->setText("Linear Search");
-                    break;
+            switch (new_search_type)
+            {
+            case::Gameplay::Collection::SearchType::LINEAR_SEARCH:
+                search_type_text->setText("Linear Search");
+                break;
 
-                case::Gameplay::SearchType::BINARY_SEARCH:
-                    search_type_text->setText("Binary Search");
-                    break;
-                }
-                search_type_text->update();
+            /*case::Gameplay::SearchType::BINARY_SEARCH:
+                search_type_text->setText("Binary Search");
+                break;*/
             }
+            search_type_text->update();
+            
         }
 
         void GameplayUIController::updateComparisonsText()
