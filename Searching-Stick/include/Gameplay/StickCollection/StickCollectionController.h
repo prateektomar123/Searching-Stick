@@ -28,7 +28,6 @@ namespace Gameplay {
             int number_of_comparisons;
             int number_of_array_access;
             int current_operation_delay;
-            int num_sticks;
             int delay_in_ms;
             sf::String time_complexity;
 

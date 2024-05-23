@@ -147,6 +147,8 @@ namespace Gameplay {
 				number_of_array_access += 2;
 				number_of_comparisons++;
 
+				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
+
 				if (sticks[mid] == stick_to_search)
 				{
 					sticks[mid]->stick_view->setFillColor(collection_model->found_element_color);
@@ -248,14 +250,12 @@ namespace Gameplay {
 			case Gameplay::Collection::SearchType::LINEAR_SEARCH:
 				time_complexity = "O(n)";
 				current_operation_delay = collection_model->linear_search_delay;
-				num_sticks = collection_model->linear_search_sticks;
 				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
 			case Gameplay::Collection::SearchType::BINARY_SEARCH:
 				sortElements();
 				time_complexity = "O(log n)";
 				current_operation_delay = collection_model->binary_search_delay;
-				num_sticks = collection_model->binary_search_sticks;
 				search_thread = std::thread(&StickCollectionContoller::processBinarySearch, this);
 				break;
 			}
@@ -278,7 +278,7 @@ namespace Gameplay {
 
 		int Gameplay::Collection::StickCollectionContoller::getNumberOfSticks()
 		{
-			return num_sticks;
+			return collection_model->number_of_elements;
 		}
 
 		int Gameplay::Collection::StickCollectionContoller::getDelayMilliseconds()
