@@ -4,6 +4,7 @@
 #include "Gameplay/StickCollection/Stick.h"
 #include "Gameplay/GameplayService.h"
 #include "Global/ServiceLocator.h"
+#include "Sound/SoundService.h"
 #include <random>
 
 namespace Gameplay {
@@ -111,6 +112,7 @@ namespace Gameplay {
 
 		void Gameplay::Collection::StickCollectionContoller::processLinearSearch()
 		{
+			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
 			for (int i = 0; i < sticks.size(); i++)
 			{
 
@@ -118,7 +120,7 @@ namespace Gameplay {
 				number_of_array_access += 1;
 				number_of_comparisons++;
 
-				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
+				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
 
 				if (sticks[i] == stick_to_search)
 				{
@@ -141,13 +143,14 @@ namespace Gameplay {
 			int left = 0;
 			int right = sticks.size();
 
+			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
 			while (left < right)
 			{
 				int mid = left + (right - left) / 2;
 				number_of_array_access += 2;
 				number_of_comparisons++;
 
-				Global::ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::COMPARE_SFX);
+				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
 
 				if (sticks[mid] == stick_to_search)
 				{
