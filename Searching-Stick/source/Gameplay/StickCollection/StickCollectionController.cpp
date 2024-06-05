@@ -100,9 +100,9 @@ namespace Gameplay {
 
 		void Gameplay::Collection::StickCollectionContoller::processLinearSearch()
 		{
+
 			for (int i = 0; i < sticks.size(); i++)
 			{
-
 
 				number_of_array_access += 1;
 				number_of_comparisons++;
@@ -209,7 +209,6 @@ namespace Gameplay {
 			case Gameplay::Collection::SearchType::LINEAR_SEARCH:
 				time_complexity = "O(n)";
 				current_operation_delay = collection_model->linear_search_delay;
-				num_sticks = collection_model->linear_search_sticks;
 				search_thread = std::thread(&StickCollectionContoller::processLinearSearch, this);
 				break;
 			}
@@ -232,7 +231,7 @@ namespace Gameplay {
 
 		int Gameplay::Collection::StickCollectionContoller::getNumberOfSticks()
 		{
-			return num_sticks;
+			return collection_model->number_of_elements;
 		}
 
 		int Gameplay::Collection::StickCollectionContoller::getDelayMilliseconds()
