@@ -17,4 +17,6 @@ namespace Global
 	const sf::String Config::DS_DIGIB_font_path = "assets/fonts/DS_DIGIB.ttf";
 
 	const sf::String Config::button_click_sound_path = "assets/sounds/button_click_sound.wav";
+
+	const sf::String Config::compare_sfx_path = "assets/sounds/compare_sfx.wav";
 }
