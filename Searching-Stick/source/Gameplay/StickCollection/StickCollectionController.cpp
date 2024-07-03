@@ -116,7 +116,6 @@ namespace Gameplay {
 			for (int i = 0; i < sticks.size(); i++)
 			{
 
-
 				number_of_array_access += 1;
 				number_of_comparisons++;
 
