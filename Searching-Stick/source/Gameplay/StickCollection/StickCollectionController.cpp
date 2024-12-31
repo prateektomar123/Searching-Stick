@@ -123,6 +123,7 @@ namespace Gameplay {
 					sticks[i]->stick_view->setFillColor(collection_model->element_color);
 				}
 
+
 			}
 		}
 
