@@ -1,4 +1,3 @@
-
 #pragma once
 #include <SFML/System/String.hpp>
 #include "Gameplay/StickCollection/StickCollectionModel.h"
@@ -16,6 +15,7 @@ namespace Gameplay
 		GameplayController* gameplay_controller;
 		StickCollectionContoller* collection_controller;
 
+		void initializeRandomSeed();
 
 	public:
 		GameplayService();
@@ -30,7 +30,11 @@ namespace Gameplay
 
 		Collection::SearchType getCurrentSearchType();
 
+		int getNumberOfComparisons();
+		int getNumberOfArrayAccess();
 		int getNumberOfSticks();
+		int getDelayMilliseconds();
+		sf::String getTimeComplexity();
 
 	};
 }
