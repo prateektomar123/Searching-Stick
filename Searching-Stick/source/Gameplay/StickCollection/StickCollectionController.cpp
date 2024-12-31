@@ -114,6 +114,7 @@ namespace Gameplay {
 					stick_to_search->stick_view->setFillColor(collection_model->found_element_color);
 					stick_to_search = nullptr;
 					return;
+
 				}
 				else
 				{
